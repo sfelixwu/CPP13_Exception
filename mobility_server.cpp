@@ -1,5 +1,5 @@
 
-#define _INTENTIONALLY_EXCLUDED_
+// #define _INTENTIONALLY_EXCLUDED_
 
 // for Json::value
 #include <json/json.h>
@@ -33,11 +33,11 @@ public:
 			   const std::string& class_id,
 			   const Json::Value& json_object,
 			   const std::string& object_id);
-#ifdef _INTENTIONALLY_EXCLUDED_
+  // #ifdef _INTENTIONALLY_EXCLUDED_
   virtual Json::Value dump2JSON(const std::string& action,
 				const std::string& class_id,
 				const std::string& object_id);
-#endif /* _INTENTIONALLY_EXCLUDED_ */
+  // #endif /* _INTENTIONALLY_EXCLUDED_ */
 };
 
 Mymobility_Server::Mymobility_Server(AbstractServerConnector &connector, serverVersion_t type)
@@ -107,7 +107,7 @@ Mymobility_Server::send
   return result;
 }
 
-#ifdef _INTENTIONALLY_EXCLUDED_
+// #ifdef _INTENTIONALLY_EXCLUDED_
 
 Json::Value
 Mymobility_Server::dump2JSON
@@ -169,7 +169,8 @@ Mymobility_Server::dump2JSON
   // std::cout << result.toStyledString() << std::endl;
   return result;
 }
-#endif /* _INTENTIONALLY_EXCLUDED_ */
+
+// #endif /* _INTENTIONALLY_EXCLUDED_ */
 
 int main()
 {

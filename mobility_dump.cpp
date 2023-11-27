@@ -16,7 +16,7 @@ using namespace std;
 int
 main()
 {
-  std::string my_team_name = "fire_ball"; // put your registered team name
+  std::string my_team_name = "midterm_5"; // put your registered team name
 
   // okay, going for the server
   HttpClient httpclient("http://127.0.0.1:8384"); // replace here with the ngrok link
@@ -51,8 +51,26 @@ main()
 
 #endif /* _OH_MODIFICATION_ */
 
+  Json::Value exception_json;
+  
   try {
     myv = myClient.dump2JSON("dump2JSON", "Message", my_team_name);
+    if ((myv["status"]).isNull())
+      {
+	exception_json["status"] = "failed";
+	exception_json["reason"] = "RPC response without status";
+	throw ecs36b_Exception { exception_json };
+      }
+    else
+      {
+	if ((myv["status"]).asString() == "failed")
+	  {
+	    throw ecs36b_Exception { myv };
+	  }
+      }
+  } catch (ecs36b_Exception &e) {
+    cerr << e.what() << endl;
+    std::cout << e.exp_msg << std::endl;
   } catch (JsonRpcException &e) {
     cerr << e.what() << endl;
   }
